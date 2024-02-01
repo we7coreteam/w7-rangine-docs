@@ -16,9 +16,11 @@ log.Info("route middleware test, req time: " + time.Now().String())
 
 ### 最佳实践
 
-写入日志时，会将 debug 级别的日志输出到控制台上显示，并写入到 run.log 日志文件中，
+配置日志时可配置多个通道，默认日志可根据需要进行配置。
 
-info 级别的日志只会写入到 run.log 文件中。
+以下的配置表示，**debug 级别及以上** 的会在控制台上显示
+
+仅有 error 级别会在 file 中记录
 
 ```
 log:
@@ -30,7 +32,7 @@ log:
   file:
     driver: file
     path: run.log
-    level: info
+    level: error
   console:
     driver: console
     level: debug
