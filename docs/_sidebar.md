@@ -1,5 +1,4 @@
 * **基础**
-  * [介绍](zh-cn/introduce/README.md)
   * [安装](zh-cn/introduce/install.md)
   * [App](zh-cn/introduce/app.md)
   * [模块(Provider)](zh-cn/introduce/provider.md)
