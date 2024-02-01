@@ -24,9 +24,10 @@ Validate(ctx *gin.Context, requestData interface{}) bool
 
 定义验证器结构时需要根据不同的数据源指定不同的Tag。
 
-- form 获取 get post 参数，可以使用 default 默认值配置。 
+- form 获取 get post 参数。 
 - uri 获取路由中定义的 :id 数据
 - json 获取以 Json 形式提交的数据
+- default 未传值时可以设置默认值
 
 #### 示例
 
@@ -38,11 +39,11 @@ type Home struct {
 func (home Home) Manifest(ctx *gin.Context) {
 	type ParamsValidate struct {
 		// url 通过 get 或是 post 传递都可以正常验证
-		Url string 	`form:"url,default=test" binding:"required,url"`
+		Url string 	`form:"url" binding:"required,url" default:"test.github.com"`
 		// 获取通过路由定的 id 参数，/somerouter/:id
 		Id int 		`uri:id` 
 		// 获取通过 json 提交的 name 参数
-		Name string 	`json:name`
+		Name string 	`json:"name" default:"abc"`
 	}
 	params := ParamsValidate{}
 	if !home.Validate(ctx, &params) {
